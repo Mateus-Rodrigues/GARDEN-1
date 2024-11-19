@@ -1,12 +1,15 @@
 import { View, StyleSheet, Image  } from "react-native";
 
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from "@react-navigation/drawer";
 import { Feather } from '@expo/vector-icons';
 
 import TabRoutes from "./tab.routes";
 import Config from "../screens/config/config";
+import { UserContext } from "../../contexts/userContext";
+import { useContext } from "react";
 
 const Drawer = createDrawerNavigator();
+
 
 function CustomHeader() {
   return (
@@ -21,8 +24,26 @@ function CustomHeader() {
 }
 
 export default function DrawerRoutes() {
+    const { logout } = useContext(UserContext);
+
     return (
-        <Drawer.Navigator screenOptions={{
+        <Drawer.Navigator 
+        initialRouteName="Inicio"
+        drawerContent={(props) => {
+          return (
+            <DrawerContentScrollView  
+            style={styles.drawerContainer}           
+            {...props}
+            >
+              <DrawerItemList {...props} />
+              <DrawerItem 
+                label="Desconectar" 
+                onPress={logout} 
+              />
+            </DrawerContentScrollView>
+          );
+        }}
+        screenOptions={{
             drawerActiveTintColor: 'darkgreen', 
             drawerInactiveTintColor: 'grey',
             headerTitle: () => <CustomHeader />,
@@ -39,7 +60,7 @@ export default function DrawerRoutes() {
             }}
             
             />
-               <Drawer.Screen
+               {/* <Drawer.Screen
                 name='Config'
                 component={Config}
                 options={{
@@ -47,7 +68,7 @@ export default function DrawerRoutes() {
                     drawerLabel: 'Configurações',
             }}
             
-            />
+            /> */}
               {/* <Drawer.Screen
                 name='MeuPerfil'
                 component={}
@@ -61,6 +82,7 @@ export default function DrawerRoutes() {
 }
 
 const styles = StyleSheet.create({
+
   headerContainer: {
       alignItems: 'center', // Centraliza a imagem
       justifyContent: 'center',
@@ -70,7 +92,9 @@ const styles = StyleSheet.create({
       // width: 150, // Ajuste a largura conforme necessário
       // height: 40, // Ajuste a altura conforme necessário
       width: 150,
-      height: 50,
-      
+      height: 50,      
   },
+  drawerContainer: {
+   
+  }
 });

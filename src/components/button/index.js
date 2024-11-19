@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     button: {
-        backgroundColor: '#074A05',
+        // color: 'darkgreen',
+        backgroundColor: 'darkgreen',
         justifyContent: 'center',
         // paddingVertical: 10,
         // paddingHorizontal: 20,
