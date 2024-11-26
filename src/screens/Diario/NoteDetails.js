@@ -22,10 +22,11 @@ const NoteDetails = ({ route }) => {
     <ScrollView style={{  flexGrow: 1}}>
       <Pressable
       style={{
+        marginLeft: 5 ,
         backgroundColor: 'darkred',
         padding: 5,
         borderRadius: 5,
-        width: 50,
+        width: 65,
         height: 35,
       }}
       onPress={() => apagarDiario()}>
@@ -33,7 +34,7 @@ const NoteDetails = ({ route }) => {
          style={{
           fontWeight: 'bold',
           color: 'white',
-          alignContent: 'center',
+          textAlign: 'center'
         }}>Apagar</Text>
       </Pressable>
       <View style={styles.container} >
